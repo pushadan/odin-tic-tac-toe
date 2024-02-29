@@ -12,37 +12,42 @@ class TicTacToeGame{
 
   }
 
+
+
   makePlayer(playerName, playerSymbol){
     //check if 2 players already exist
     if (this.playersArray.length > 1){
       return console.log("Two players already exist");
     }
     //create player
-    const player = new Player(playerName, playerSymbol);
+    const player = this._player(playerName, playerSymbol);
     console.log(`player made: ${playerName}, ${playerSymbol}`);
-    this.assignPlayer(player);
+    this._assignPlayer(player);
   }
 
-  assignPlayer(player){
-    switch (this.playersArray.length){
-      //no players created yet
-      case 0: {
-        this.playersArray[0] = player;
-        console.log(`${this.playersArray[0].playerName} is P1!`);
-        break;
-      }
-      //1 player created
-      case 1: {
-        this.playersArray[1] = player;
-        console.log(`${this.playersArray[1].playerName} is P2!`);
-        break;
-      }
-      default: {
-        console.warn("Error, check assignPlayer() method");
-        break;
-      }
+  //factory function to create players
+  //stops devs from calling the player class in global scope
+  _player(playerName, playerSymbol){
+    return {
+      playerName: playerName,
+      playerSymbol: playerSymbol
     }
+  }
 
+  _assignPlayer(player){
+    //1 player created
+    if (this.playersArray.length === 1){
+      this.playersArray[1] = player;
+      console.log(`${this.playersArray[1].playerName} is P2!`);
+      return;
+    }
+    //no players created yet
+    if (this.playersArray.length === 0){
+      this.playersArray[0] = player;
+      console.log(`${this.playersArray[0].playerName} is P1!`);
+      return;
+    }
+    console.warn("Error, check _assignPlayer() method");
     console.table(this.playersArray);
   }
 
@@ -57,7 +62,7 @@ class TicTacToeGame{
     //***algo for checking columns and rows***
     //start by checking columns
     let checkColumnsFlag = true;
-    //check columns then rows, loop twice
+    //check columns then rows, loops twice
     for(let i=0; i<2; i++){
       //check each column loop 3 times
       for(let x=0; x<3; x++){
@@ -87,19 +92,56 @@ class TicTacToeGame{
     }
 
     //check cross
-    this.board[0][0]
-    this.board[1][1]
-    this.board[2][2]
-    
-    this.board[0][2]
-    this.board[1][1]
-    this.board[2][0]
+    // this.board[0][0]
+    // this.board[1][1]
+    // this.board[2][2]
 
+    for(let i=0; i<3; i++){
+      if (this.board[i][i] === "X"){
+        xCount++;
+      }
+      if (this.board[i][i] === "O"){
+        oCount++;
+      }
+    }
+    //if current column has 3 Xs, Player X wins!
+    if(xCount === 3){ return console.log("X WIN"); }
+    //if current column has 3 Os, Player O wins!
+    if(oCount === 3){ return console.log("O WIN"); }
+    //reset for next column
+    xCount = 0;
+    oCount = 0;
 
+    //check reverse cross
+    // this.board[0][2]
+    // this.board[1][1]
+    // this.board[2][0]
 
+    let j = 2;
+    for(let i=0; i<3; i++){
+      if (this.board[i][j] === "X"){
+        xCount++;
+      }
+      if (this.board[i][j] === "O"){
+        oCount++;
+      }
+      j--;
+    }
+    //if current column has 3 Xs, Player X wins!
+    if(xCount === 3){ return console.log("X WIN"); }
+    //if current column has 3 Os, Player O wins!
+    if(oCount === 3){ return console.log("O WIN"); }
+    //reset for next column
+    xCount = 0;
+    oCount = 0;
+  }
 
+  _checkColumnAndRows(){
 
-  
+  }
+
+  _checkCrosses(){
+
   }
 
   gameResult(){}
@@ -107,24 +149,17 @@ class TicTacToeGame{
   addWin(winningPlayer){
     if (winningPlayer === 0){
       p1Wins++;
+      return;
     }
     else {p2Wins++};
   }
 
   //
   replay(){
-    this.test++
-    console.log(this.test);
   }
 
 }
 
-class Player{
-  constructor(playerName, playerSymbol){
-    this.playerName = playerName;
-    this.playerSymbol = playerSymbol;
-  }
-}
 
 
 const newGame = new TicTacToeGame();
