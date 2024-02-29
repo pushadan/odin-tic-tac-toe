@@ -1,60 +1,59 @@
 class TicTacToeGame{
   constructor(){
+    this.p1Wins = 0;
+    this.p2Wins = 0;
+    this.playersArray = [];
+    this.winningPlayer = null;
+    this.board = [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
+    ];
 
-    this.addPlayer = function(playerName, playerSymbol){
-      const player = new Player(playerName, playerSymbol);
-      this.assignPlayer(player);
-
-      if (playersArray.length == 0){
-        this.playersArray[0] = player;
-      }
-      if (playersArray.length == 1){
-        this.playersArray[1] = player;
-      }
-      else {console.warn("Two players already exist")}
-    }
-
-    this.addWin = function(winningPlayer){
-      if (winningPlayer === 0){
-        p1Wins++;
-      }
-      else {p2Wins++};
-    }
-
-    this.setRound = function(rounds){
-      roundsToWin = rounds;
-    }
-
-    const playersArray = [];
-    const p1Wins = 0;
-    const p2Wins = 0;
-    const roundsToWin = 0;
-    const winningPlayer = null;
   }
 
-  // newPlayer(playerName, playerSymbol){
-  //   const player = new Player(playerName, playerSymbol);
-  //   this.assignPlayer(player);
-  // }
+  makePlayer(playerName, playerSymbol){
+    const player = new Player(playerName, playerSymbol);
+    this.assignPlayer(player);
+  }
 
-  // assignPlayer(player){
-  //   if (this.playersArray)
-  //   this.playersArray[0] = player;
-  // }
+  assignPlayer(player){
+    if (this.playersArray.length == 0){
+      this.playersArray[0] = player;
+      console.log(`${player} is P1!`)
+    }
+    if (this.playersArray.length == 1){
+      this.playersArray[1] = player;
+      console.log(`${player} is P2!`)
+    }
+    else {alert("Two players already exist")}
+  }
 
 
-  startGame(numOfRounds){
-    for (let i=0;i<numOfRounds;i++){
+  startGame(){
+    
+  }
+
+  checkWin(){
+    //check for winner
+    for (let i=0;i<9;i++){
       this.startRound();
     }
   }
 
-  startRound(){}
+  gameResult(){}
 
-  roundResult(){}
+  addWin(winningPlayer){
+    if (winningPlayer === 0){
+      p1Wins++;
+    }
+    else {p2Wins++};
+  }
 
+  //
   replay(){
-    console.log(p1Wins);
+    this.test++
+    console.log(this.test);
   }
 
 }
