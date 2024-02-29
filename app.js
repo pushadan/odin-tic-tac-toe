@@ -20,14 +20,14 @@ class TicTacToeGame{
       return console.log("Two players already exist");
     }
     //create player
-    const player = this._player(playerName, playerSymbol);
+    const player = this._playerCreator(playerName, playerSymbol);
     console.log(`player made: ${playerName}, ${playerSymbol}`);
     this._assignPlayer(player);
   }
 
-  //factory function to create players
+  //factory function to create player objects
   //stops devs from calling the player class in global scope
-  _player(playerName, playerSymbol){
+  _playerCreator(playerName, playerSymbol){
     return {
       playerName: playerName,
       playerSymbol: playerSymbol
@@ -51,9 +51,9 @@ class TicTacToeGame{
     console.table(this.playersArray);
   }
 
-  startGame(){
-    
-  }
+  startGame(){}
+
+  addSymbol(){}
 
   checkWin(){
     let xCount = 0;
@@ -161,7 +161,7 @@ class TicTacToeGame{
 }
 
 
-
+//testing
 const newGame = new TicTacToeGame();
 
 console.log({newGame});
