@@ -56,10 +56,14 @@ class TicTacToeGame{
   addSymbol(){}
 
   checkWin(){
+    this._checkColumnAndRows();
+    this._checkCross();
+    this._checkReverseCross();
+  }
+
+  _checkColumnAndRows(){
     let xCount = 0;
     let oCount = 0;
-
-    //***algo for checking columns and rows***
     //start by checking columns
     let checkColumnsFlag = true;
     //check columns then rows, loops twice
@@ -82,20 +86,16 @@ class TicTacToeGame{
         if(xCount === 3){ return console.log("X WIN"); }
         //if current column has 3 Os, Player O wins!
         if(oCount === 3){ return console.log("O WIN"); }
-
-        //reset for next column
-        xCount = 0;
-        oCount = 0;
       }
       //switch to rows, loop through again
       checkColumnsFlag = false; 
     }
+  }
 
+  _checkCross(){
+    let xCount = 0;
+    let oCount = 0;
     //check cross
-    // this.board[0][0]
-    // this.board[1][1]
-    // this.board[2][2]
-
     for(let i=0; i<3; i++){
       if (this.board[i][i] === "X"){
         xCount++;
@@ -111,12 +111,12 @@ class TicTacToeGame{
     //reset for next column
     xCount = 0;
     oCount = 0;
+  }
 
+  _checkReverseCross(){
+    let xCount = 0;
+    let oCount = 0;
     //check reverse cross
-    // this.board[0][2]
-    // this.board[1][1]
-    // this.board[2][0]
-
     let j = 2;
     for(let i=0; i<3; i++){
       if (this.board[i][j] === "X"){
@@ -134,14 +134,6 @@ class TicTacToeGame{
     //reset for next column
     xCount = 0;
     oCount = 0;
-  }
-
-  _checkColumnAndRows(){
-
-  }
-
-  _checkCrosses(){
-
   }
 
   gameResult(){}
