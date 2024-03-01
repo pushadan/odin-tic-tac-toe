@@ -1,0 +1,53 @@
+:root{
+    --green: #00F51D;
+    --black: #111D13;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+a{
+    color: inherit; /* blue colors for links too */
+    /* text-decoration: inherit; no underline */
+}
+
+#main{
+    background-color: var(--black);
+}
+
+#header{
+    color: var(--green);
+    height: 50px;
+    border-bottom: 5px double var(--green);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#logo-title{
+    margin-left: 20px;
+    font-size: 1.4rem;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+#header a{
+    margin-right: 20px;
+}
+
+#header img{
+    height: 40px;
+}
+
+#title{
+    color: var(--green);
+    height: 400px;
+    font-size: 1.5rem;
+}
+
+#footer p{
+    color: var(--green);
+
+}
