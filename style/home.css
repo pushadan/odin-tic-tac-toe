@@ -1,0 +1,129 @@
+@font-face {
+    font-family: apple2;
+    src: url("../font/Apple\ II\ ALT\ Pro.otf") format("opentype");
+}
+
+:root{
+    --dark: #2b2c2b;
+    --white: #bbb9ad;
+    font-family: apple2, 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 14px;
+}
+a{
+    color: inherit; /* blue colors for links too */
+    /* text-decoration: inherit; no underline */
+}
+body{
+    height: 100vh;
+    width: 100vw;
+
+}
+
+#main{
+    background-color: var(--white);
+    height:95%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+#header{
+    color: var(--dark);
+    height: 70px;
+    border-bottom: 3px solid var(--dark);
+    width: 100vw;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+#logo-title{
+    margin-left: 20px;
+    font-size: 1.4rem;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+
+    margin-left: 40px;
+}
+#header a{
+    margin-right: 40px;
+}
+
+#header img{
+    height: 40px;
+}
+
+#title-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:40px;
+
+    margin-top: 100px;
+}
+#title{
+    color: var(--dark);
+    height: 200px;
+    min-width: 200px;
+    /*This sets the minimum font size at 0.5rem 
+    and amplifies it by 1vw depending on the viewport width.*/
+    font-size: calc(.5rem + 1vw);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#startBtn{
+    background-color: var(--white);
+    color: var(--dark);
+    border: 0 solid ;
+
+    height: 50px;
+    width: 20vw;
+    min-width: 120px;
+    max-width: 150px;
+    font-size: 1.2rem;
+
+
+    /* padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px; */
+
+    border: 4px solid var(--dark); 
+    font-weight: bold;
+}
+#startBtn:hover{
+    border: 4px solid var(--dark); 
+    color: var(--white);
+    background-color: var(--dark);
+    font-weight: bold;
+}
+#startBtn:active{
+    border: 4px solid var(--dark); 
+    font-weight: bold;
+    background-color: #929292;
+    color: var(--dark);
+}
+
+
+#footer{
+    text-align: center;
+    background-color: var(--dark);
+    color: var(--white);
+    height: 5%;
+    font-weight: lighter;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
