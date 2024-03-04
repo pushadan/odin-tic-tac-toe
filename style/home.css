@@ -114,6 +114,9 @@ body{
     background-color: #929292;
     color: var(--dark);
 }
+#startBtn a {
+    text-decoration: inherit;
+}
 
 
 #footer{
