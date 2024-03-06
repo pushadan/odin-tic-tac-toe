@@ -82,7 +82,7 @@ body{
     align-items: center;
 }
 
-#startBtn{
+button{
     background-color: var(--white);
     color: var(--dark);
     border: 0 solid ;
@@ -93,28 +93,22 @@ body{
     max-width: 150px;
     font-size: 1.2rem;
 
-
-    /* padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px; */
-
     border: 4px solid var(--dark); 
     font-weight: bold;
 }
-#startBtn:hover{
+button:hover{
     border: 4px solid var(--dark); 
     color: var(--white);
     background-color: var(--dark);
     font-weight: bold;
 }
-#startBtn:active{
+button:active{
     border: 4px solid var(--dark); 
     font-weight: bold;
     background-color: #929292;
     color: var(--dark);
 }
-#startBtn a {
+button a {
     text-decoration: inherit;
 }
 
@@ -129,4 +123,72 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+dialog{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 40vw;
+    max-width: 370px;
+    height: 300px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    color: var(--dark);
+    border: 2px solid var(--dark);
+
+    background-color: var(--white);
+}
+dialog p{
+    font-size: 1.5rem;
+    text-align: center;
+}
+#dialog-content{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+#dialog-content div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#player1name, #player2name{
+    width: 50%;
+    height: 30px;
+}
+#player1symbol, #player2symbol{
+    height: 35.5px;
+    width: 50px;
+    text-align: center;
+}
+#button-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 5px;
+    flex-wrap: wrap;
+
+}
+dialog form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+dialog form button{
+    font-size: 1rem;
+    height: 40px;
+    width: 100px;
+    min-width: 50px;
+    max-width: 150px;
+    border: 3.5px solid var(--dark); 
 }

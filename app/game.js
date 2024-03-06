@@ -212,6 +212,35 @@ class TicTacToeGame{
   }
 }
 
+class HomeUI{
+  constructor(){
+    this.dialogWindow = document.querySelector("#assignPlayer");
+
+    this.startBtn = document.querySelector("#startBtn");
+    this.okBtn = document.querySelector("#okBtn");
+    this.cancelBtn = document.querySelector("#cancelBtn");
+  }
+  
+  attachEventListeners(){
+    this._closeDialog(this.cancelBtn, this.dialogWindow);
+
+
+  }
+
+
+
+  _closeDialog(btn, dialog){
+    btn.addEventListener("click", ()=>{
+      dialog.close();
+    })
+  }
+
+
+
+}
+
+
+
 
 //On start (IIFE - Immediate Invoked Function Expression)
 (function() {
@@ -221,6 +250,9 @@ class TicTacToeGame{
   console.log({newGame});
   
   // newGame.startGame();
+
+  const homeUI = new HomeUI;
+  homeUI.attachEventListeners();
 
 
 
