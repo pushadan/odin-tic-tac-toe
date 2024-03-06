@@ -216,23 +216,51 @@ class HomeUI{
   constructor(){
     this.dialogWindow = document.querySelector("#assignPlayer");
 
+    //buttons
     this.startBtn = document.querySelector("#startBtn");
     this.okBtn = document.querySelector("#okBtn");
     this.cancelBtn = document.querySelector("#cancelBtn");
+
+    //fields and symbol dropdowns
+    this.player1name = document.querySelector("#player1name");
+    this.player2name = document.querySelector("#player2name");
+    this.player1symbol = document.querySelector("#player1symbol");
+    this.player2symbol = document.querySelector("#player2symbol");
   }
   
   attachEventListeners(){
-    this._closeDialog(this.cancelBtn, this.dialogWindow);
-
-
+    this._characterSelectEL(this.startBtn, this.dialogWindow);
+    this._closeDialogEL(this.cancelBtn, this.dialogWindow);
+    this._submitPlayersEL(this.okBtn);
   }
 
-
-
-  _closeDialog(btn, dialog){
+  _characterSelectEL(btn, dialog){
+    btn.addEventListener("click", ()=>{
+      dialog.showModal();
+    })
+  }
+  _closeDialogEL(btn, dialog){
     btn.addEventListener("click", ()=>{
       dialog.close();
     })
+  }
+  _submitPlayersEL(btn){
+      btn.addEventListener("click", ()=>{
+        const player1name = this.player1name.value;
+        const player2name = this.player2name.value;
+
+        const player1symbol = this.player1symbol.value;
+        const player2symbol = this.player2symbol.value;
+
+        if(player1symbol === player2symbol){
+          alert("Players cannot have the same symbol");
+          return;
+        }
+
+        alert(`${player1name} is player 1, ${player2name} is player 2`);
+        
+        
+      })
   }
 
 
@@ -253,6 +281,7 @@ class HomeUI{
 
   const homeUI = new HomeUI;
   homeUI.attachEventListeners();
+
 
 
 
