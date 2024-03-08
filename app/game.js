@@ -12,8 +12,8 @@ class TicTacToeGame{
   }
 
   startGame(){
-    //create players from user input, assigns player obj to players array
-    this._createNewPlayers();
+    //get player data, assigns player obj to players array
+    this._getPlayers();
     
     //game loop until there is an overall winner, best out of 3
     while(this.p1Wins < 3 || this.p2Wins < 3){
@@ -36,40 +36,52 @@ class TicTacToeGame{
     
     //prompt for replay
   }
+
+  // replay(){
+  // }
   
-  getInputAndSetBoard(name, symbol){
+  _getPlayers(){
+    const players = new Player;
+    const playersObj = players.capturePlayerdata();
+
+    players.createNewPlayer(this, playersObj.p1name, playersObj.p1symbol);
+    players.createNewPlayer(this, playersObj.p2name, playersObj.p2symbol);
+  }
+
+  _getInputAndSetBoard(name, symbol){
     const column = prompt(`${name}'s turn: what column?`);
     const row = prompt(`${name}'s turn: what row?`);
 
     this.board[row][column] = symbol;
   }
 
-  //
-  replay(){
+  //checks for win
+  _checkWin(){
+    const checkWin = new CheckWin;
+    checkWin.checkAll();
   }
 
-  _createNewPlayers(){
-    this._promptUserForPlayers();
-  }
-  
-  //prompts user for player creation, captures name and symbol.
-  //calls _createPlayerObj()
-  _promptUserForPlayers(){
-    //get players via prompt()
-    const player1name = prompt("Player one name:");
-    const player1symbol = prompt("Player one symbol:");
-    this._createPlayerObj(player1name, player1symbol);
+  _addWin(){}
+}
 
-    const player2name = prompt("Player two name:");
-    const player2symbol = prompt("Player two symbol:");
-    this._createPlayerObj(player2name, player2symbol);    
+class Player{
+  constructor(){}
+
+  //grab player data captured in home.js
+  //retrieve data from localStorage
+  capturePlayerdata(){
+    const playerDataString = localStorage.getItem('playerData');
+    localStorage.clear();
+    const playerData = JSON.parse(playerDataString);
+
+    return playerData;
   }
 
   //creates a player obj using _playerObjCreator() factory 
   //calls _assignPlayer();
-  _createPlayerObj(playerName, playerSymbol){
+  createNewPlayer(game, playerName, playerSymbol){
     //check if 2 players already exist
-    if (this.playersArray.length > 1){
+    if (game.playersArray.length > 1){
       return console.error("Two players already exist");
     }
     //factory function to create player objects
@@ -82,37 +94,41 @@ class TicTacToeGame{
     //create player obj
     const player = _playerObjCreator(playerName, playerSymbol);
     console.log(`player made: ${playerName}, ${playerSymbol}`);
-    this._assignPlayer(player);
+    this._assignPlayer(game, player);
   }
 
   //assign player to players array
-  _assignPlayer(player){
+  _assignPlayer(game, player){
     //1 player created
-    if (this.playersArray.length === 1){
-      this.playersArray[1] = player;
-      console.log(`${this.playersArray[1].playerName} is P2!`);
+    if (game.playersArray.length === 1){
+      game.playersArray[1] = player;
+      console.log(`${game.playersArray[1].playerName} is P2!`);
       return;
     }
     //no players created yet
-    if (this.playersArray.length === 0){
-      this.playersArray[0] = player;
-      console.log(`${this.playersArray[0].playerName} is P1!`);
+    if (game.playersArray.length === 0){
+      game.playersArray[0] = player;
+      console.log(`${game.playersArray[0].playerName} is P1!`);
       return;
     }
     console.error("Error, check _assignPlayer() method");
-    console.table(this.playersArray);
+    console.table(game.playersArray);
+  }
+}
+
+class CheckWin{
+  constructor(){
+    this.xCount = 0;
+    this.oCount = 0;
   }
 
-  //checks columns, rows, cross and reverse cross
-  _checkWin(){
+  checkAll(){
     this._checkColumnAndRows();
     this._checkCross();
     this._checkReverseCross();
   }
 
   _checkColumnAndRows(){
-    let xCount = 0;
-    let oCount = 0;
     //start by checking columns
     let checkColumnsFlag = true;
     //check columns then rows, loops twice
@@ -125,10 +141,10 @@ class TicTacToeGame{
           const direction = checkColumnsFlag ? this.board[y][x] : this.board[x][y]; 
           //count up Xs or Os if they exist in current column
           if (direction === "X"){
-            xCount++;
+            this.xCount++;
           }
           if (direction === "O"){
-            oCount++;
+            this.oCount++;
           }
         }
         //if current column has 3 Xs, Player X wins!
@@ -152,15 +168,15 @@ class TicTacToeGame{
   }
 
   _checkCross(){
-    let xCount = 0;
-    let oCount = 0;
+    this.xCount = 0;
+    this.oCount = 0;
     //check cross
     for(let i=0; i<3; i++){
       if (this.board[i][i] === "X"){
-        xCount++;
+        this.xCount++;
       }
       if (this.board[i][i] === "O"){
-        oCount++;
+        this.oCount++;
       }
     }
     //if current column has 3 Xs, Player X wins!
@@ -172,21 +188,21 @@ class TicTacToeGame{
       return console.log("O WIN"); 
     }
     //reset for next column
-    xCount = 0;
-    oCount = 0;
+    this.xCount = 0;
+    this.oCount = 0;
   }
 
   _checkReverseCross(){
-    let xCount = 0;
-    let oCount = 0;
+    this.xCount = 0;
+    this.oCount = 0;
     //check reverse cross
     let j = 2;
     for(let i=0; i<3; i++){
       if (this.board[i][j] === "X"){
-        xCount++;
+        this.xCount++;
       }
       if (this.board[i][j] === "O"){
-        oCount++;
+        this.oCount++;
       }
       j--;
     }
@@ -199,75 +215,17 @@ class TicTacToeGame{
       return console.log("O WIN"); 
     }
     //reset for next column
-    xCount = 0;
-    oCount = 0;
-  }
-
-  _addWin(winningPlayer){
-    if (winningPlayer === 0){
-      p1Wins++;
-      return;
-    }
-    else {p2Wins++};
+    this.xCount = 0;
+    this.oCount = 0;
   }
 }
 
-class HomeUI{
+class GameUI{
   constructor(){
-    this.dialogWindow = document.querySelector("#assignPlayer");
-
-    //buttons
-    this.startBtn = document.querySelector("#startBtn");
-    this.okBtn = document.querySelector("#okBtn");
-    this.cancelBtn = document.querySelector("#cancelBtn");
-
-    //fields and symbol dropdowns
-    this.player1name = document.querySelector("#player1name");
-    this.player2name = document.querySelector("#player2name");
-    this.player1symbol = document.querySelector("#player1symbol");
-    this.player2symbol = document.querySelector("#player2symbol");
+    //get game board
   }
   
-  attachEventListeners(){
-    this._characterSelectEL(this.startBtn, this.dialogWindow);
-    this._closeDialogEL(this.cancelBtn, this.dialogWindow);
-    this._submitPlayersEL(this.okBtn);
-  }
-
-  _characterSelectEL(btn, dialog){
-    btn.addEventListener("click", ()=>{
-      dialog.showModal();
-    })
-  }
-  _closeDialogEL(btn, dialog){
-    btn.addEventListener("click", ()=>{
-      dialog.close();
-    })
-  }
-  _submitPlayersEL(btn){
-      btn.addEventListener("click", ()=>{
-        const player1name = this.player1name.value;
-        const player2name = this.player2name.value;
-
-        const player1symbol = this.player1symbol.value;
-        const player2symbol = this.player2symbol.value;
-
-        if(player1symbol === player2symbol){
-          alert("Players cannot have the same symbol");
-          return;
-        }
-
-        alert(`${player1name} is player 1, ${player2name} is player 2`);
-        
-        
-      })
-  }
-
-
-
 }
-
-
 
 
 //On start (IIFE - Immediate Invoked Function Expression)
@@ -277,11 +235,9 @@ class HomeUI{
   const newGame = new TicTacToeGame;
   console.log({newGame});
   
-  // newGame.startGame();
+  newGame._getPlayers();
 
-  const homeUI = new HomeUI;
-  homeUI.attachEventListeners();
-
+  console.log(newGame.playersArray);
 
 
 
