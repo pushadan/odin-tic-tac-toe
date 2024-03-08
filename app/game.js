@@ -222,9 +222,21 @@ class CheckWin{
 
 class GameUI{
   constructor(){
-    //get game board
+    //get elements
+    this.player1name = document.querySelector("#player1name");
+    this.player2name = document.querySelector("#player2name");
+
+    this.board = document.querySelectorAll(".board");
+
+    this.playBtn = document.querySelector("#playBtn")
   }
   
+}
+
+class Board{
+  constructor(){
+    //
+  }
 }
 
 

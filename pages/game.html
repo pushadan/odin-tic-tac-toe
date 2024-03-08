@@ -22,22 +22,35 @@
     </div>
 
 
-    <div id="game-container">
+    <div id="board-and-player-container">
 
-      <div id="game-grid">
-        <div>X</div>
-        <div>X</div>
-        <div>X</div>
-        <div>X</div>
-        <div>X</div>
-        <div>X</div>
-        <div>X</div>
-        <div>X</div>
-        <div>X</div>
+      <div id="game-container">
+
+        <div id="game-grid">
+          <div class="board 00">00</div>
+          <div class="board 01">01</div>
+          <div class="board 02">02</div>
+          <div class="board 10">10</div>
+          <div class="board 11">11</div>
+          <div class="board 12">12</div>
+          <div class="board 20">20</div>
+          <div class="board 21">21</div>
+          <div class="board 22">22</div>
+        </div>
+        
+        <div class="player-container">
+          <div id="player1turn">></div>
+          <div id="player1name">Danny:</div>
+          <div id="player1score">0</div>
+          <div id="player2turn">></div>
+          <div id="player2name">Sam:</div>
+          <div id="player2score">0</div>
+        </div>
+
+        <button id="playBtn">Play</button>
       </div>
+        
 
-
-      <button id="playButton">Play</button>
     </div>
     
   </div>
