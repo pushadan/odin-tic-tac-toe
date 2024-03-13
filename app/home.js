@@ -59,7 +59,7 @@ class HomeUI{
       localStorage.setItem('playerData', JSON.stringify(playerData));
 
       //navigate to game.html
-      window.location.href = "game.html";
+      window.location.href = "./pages/game.html";
     })
   }
 }
