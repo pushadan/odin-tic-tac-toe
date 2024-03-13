@@ -46,11 +46,13 @@ class HomeUI{
       const playerData = []
       playerData[0] = {
         playerName: this.player1name.value,
-        playerSymbol: this.player1symbol.value
+        playerSymbol: this.player1symbol.value,
+        wins: 0
       };
       playerData[1] = {
         playerName: this.player2name.value,
-        playerSymbol: this.player2symbol.value
+        playerSymbol: this.player2symbol.value,
+        wins: 0
       } 
 
       //store data locally

@@ -156,3 +156,73 @@ body{
   justify-content: center;
   align-items: center;
 }
+
+
+dialog[open]{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 40vw;
+  max-width: 300px;
+  height: 215px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  color: var(--dark);
+  border: 2px solid var(--dark);
+
+  background-color: var(--white);
+}
+dialog[open] p{
+  font-size: 1.5rem;
+  text-align: center;
+}
+#dialog-content{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+#dialog-content div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+#player1name, #player2name{
+  width: 50%;
+  height: 30px;
+}
+#player1symbol, #player2symbol{
+  height: 35.5px;
+  width: 50px;
+  text-align: center;
+}
+#button-container{
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  flex-wrap: wrap;
+
+}
+dialog[open] form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+dialog[open] form button{
+  font-size: 1rem;
+  height: 40px;
+  width: 100px;
+  min-width: 50px;
+  max-width: 150px;
+  border: 3.5px solid var(--dark); 
+}
