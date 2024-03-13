@@ -79,7 +79,7 @@ body{
 }
 .player-container{
   display: grid;
-  grid-template-columns: 30px 120px 30px;
+  grid-template-columns: 30px auto 30px;
   grid-template-rows: repeat(2, 40px);
   justify-content: center;
   align-items: center;
@@ -114,33 +114,33 @@ body{
 }
 
 
-#playBtn{
+#replayBtn{
   background-color: var(--white);
   color: var(--dark);
   border: 0 solid ;
 
   height: 40px;
   width: 15vw;
-  min-width: 100px;
+  min-width: 120px;
   max-width: 75px;
   font-size: 1.2rem;
 
   border: 4px solid var(--dark); 
   font-weight: bold;
 }
-#playBtn:hover{
+#replayBtn:hover{
   border: 4px solid var(--dark); 
   color: var(--white);
   background-color: var(--dark);
   font-weight: bold;
 }
-#playBtn:active{
+#replayBtn:active{
   border: 4px solid var(--dark); 
   font-weight: bold;
   background-color: #929292;
   color: var(--dark);
 }
-#playBtn a {
+#replayBtn a {
   text-decoration: inherit;
 }
 

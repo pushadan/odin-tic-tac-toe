@@ -42,12 +42,16 @@ class HomeUI{
         return;
       }
 
-      const playerData = {
-        p1name: this.player1name.value,
-        p1symbol: this.player1symbol.value,
-        p2name: this.player2name.value,
-        p2symbol: this.player2symbol.value
-      }
+      //create players
+      const playerData = []
+      playerData[0] = {
+        playerName: this.player1name.value,
+        playerSymbol: this.player1symbol.value
+      };
+      playerData[1] = {
+        playerName: this.player2name.value,
+        playerSymbol: this.player2symbol.value
+      } 
 
       //store data locally
       localStorage.setItem('playerData', JSON.stringify(playerData));
