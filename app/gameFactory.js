@@ -36,7 +36,7 @@ function createGame(){
       game.numberOfMoves++;
       //check for draw
       if (game.numberOfMoves >= 9){
-        _draw();
+        game._draw();
         game.numberOfMoves = 0;
         return;
       }
